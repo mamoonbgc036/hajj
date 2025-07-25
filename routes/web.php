@@ -30,7 +30,6 @@ Route::group(['middleware' => ['auth']], function(){
          Route::delete('/delete/{id}', [BookingController::class, 'destroy'])->name('delete');
         }); 
 });
-  Route::group(['middleware' => ['install']], function () {
   Route::get('admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
   Route::post('admin/login', 'Admin\Auth\LoginController@login');
   Route::post('admin/logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
@@ -229,7 +228,6 @@ Route::post('subscibers','HomeController@subscibers')->name('subscibers');
 Route::get('air-ticket','HomeController@air_ticket')->name('air_ticket');
 Route::post('air-ticket','HomeController@book_ticket')->name('book_ticket');
 
-});
 
 
 
