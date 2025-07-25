@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth']], function(){
          Route::delete('/delete/{id}', [BookingController::class, 'destroy'])->name('delete');
         }); 
 });
-  Route::group(['middleware' => ['auth']], function () {
+  Route::group(['middleware' => ['install']], function () {
   Route::get('admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
   Route::post('admin/login', 'Admin\Auth\LoginController@login');
   Route::post('admin/logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
