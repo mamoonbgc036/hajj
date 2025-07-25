@@ -250,8 +250,6 @@ class PackageController extends Controller
     {
       if ($request->ajax()) {
         $package = Package::find($id);
-        unlink('storage/packege/'.$package->photo);
-        unlink('storage/packege/'.$package->banner);
         $package->delete();
         if ($package) {
          return response()->json(['success' => true, 'status' => 'success', 'message' => 'Packege Information Delete Successfully.']);
