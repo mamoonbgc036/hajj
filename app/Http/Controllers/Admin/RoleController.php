@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 use Yajra\Datatables\Datatables;
 
 class RoleController extends Controller {
-	public function indexdd() {
+	public function index() {
 
 		return view('admin.acl.index');
 	}

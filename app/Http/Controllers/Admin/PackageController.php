@@ -20,7 +20,7 @@ class PackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexss()
+    public function index()
     {
      return view('admin.package.index');
    }
@@ -52,7 +52,7 @@ class PackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createdd()
+    public function create()
     {
       $option =Option::all()->pluck('name','id')->prepend(_lang('Select One'), '');
       return view('admin.package.form',compact('option'));
@@ -64,7 +64,7 @@ class PackageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storess(Request $request)
+    public function store(Request $request)
     {
       if ($request->ajax()) {
         $validator = $request->validate([

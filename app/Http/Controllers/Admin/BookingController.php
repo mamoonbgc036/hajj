@@ -8,7 +8,7 @@ use App\Book;
 
 class BookingController extends Controller
 {
-    public function indexdd()
+    public function index()
    {
    	$book =Book::all();
    	return view('admin.booking.index',compact('book'));
@@ -16,7 +16,7 @@ class BookingController extends Controller
 
    //
 
-   public function clientss(Request $request,$id)
+   public function client(Request $request,$id)
    {
    	if ($request->ajax()) {
    	 

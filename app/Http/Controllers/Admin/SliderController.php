@@ -18,7 +18,7 @@ class SliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexdd()
+    public function index()
     {
         return view('admin.slider.index');
     }

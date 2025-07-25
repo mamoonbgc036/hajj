@@ -15,7 +15,7 @@ class UserController extends Controller {
 	private function route() {
 		return 'admin.user.';
 	}
-	public function indexdd(Request $request) {
+	public function index(Request $request) {
 
 		return view('admin.user.index');
 	}
@@ -40,7 +40,7 @@ class UserController extends Controller {
 		}
 	}
 
-	public function createss(Request $request) {
+	public function create(Request $request) {
 		if (!auth()->user()->can('user.create')) {
 			abort(403, 'Unauthorized action.');
 		}

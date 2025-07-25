@@ -15,7 +15,7 @@ class PackageOptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexdd()
+    public function index()
     {
         return view('admin.package.option.index');
     }
