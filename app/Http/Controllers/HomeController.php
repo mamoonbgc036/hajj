@@ -61,7 +61,7 @@ class HomeController extends Controller
         if ($request->ajax()) {
           $validator = $request->validate([
             'name' => ['required', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required','numeric'],
             'subject' => ['required','max:255'],
             'messege' => ['required','string']
@@ -70,28 +70,18 @@ class HomeController extends Controller
         $ip =getVisIpAddr();
         $getvalue=  getVisIpDetails($ip);
 
-        $user = New User;
-        $user->name =$request->name;
-        $user->email =$request->email;
-        $user->phone =$request->phone;
-        $user->subject =$request->subject;
-        $user->messege =$request->messege;
-        $user->ip =$ip;
-        $user->country =$getvalue->geoplugin_countryName;
-        $user->city =$getvalue->geoplugin_city;
-        $user->continent =$getvalue->geoplugin_continentName;
-        $user->latitude =$getvalue->geoplugin_latitude;
-        $user->longitude =$getvalue->geoplugin_longitude;
-        $user->currency_symbol =$getvalue->geoplugin_currencySymbol;
-        $user->currency_code =$getvalue->geoplugin_currencyCode;
-        $user->timezone =$getvalue->geoplugin_timezone;
-        $user->save();
-
-        $book =new Book;
+        $user = auth()->user();
+        if($user->phone == null){
+            $user->name =$request->name;
+            $user->phone =$request->phone;
+            // $user->subject =$request->subject;
+            // $user->messege =$request->messege;
+            $user->save();
+        }
+        $book = new Book;
         $book->user_id =$user->id;
-        $book->package_id =$request->package_id;
+        $book->package_id = $request->package_id;
         $book->save();
-
         return response()->json(['success' => true, 'status' => 'success', 'message' => _lang('Book Confirm')]);
         }
     }

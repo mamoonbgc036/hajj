@@ -223,11 +223,21 @@
 </div>
 </div>
 <!--Agent Section end-->
+@php 
+$isLoggedIn = auth()->check();
+$redirectUrl = urlencode(url()->full());
+@endphp
 @stop
 @push('scripts')
 <script>
+  var isLoggedIn = {{ $isLoggedIn ? 'true' : 'false' }};
   $('#content_form').on('submit', function(e) {
     e.preventDefault();
+    if (!isLoggedIn) {
+      alert('Please login to book this package.');
+      window.location.href = "{{ route('user.login') }}?redirect_to_book={{ $redirectUrl }}";
+      return;
+    }
     $('#submit').hide();
     $('#submiting').show();
     $(".parsley-required").remove();

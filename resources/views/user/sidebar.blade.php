@@ -14,11 +14,11 @@
                         </li>
                          <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-book"></i></i><span class="hide-menu">{{_lang('Book')}}</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('admin.book.index') }}">
+                                <li><a href="{{ route('user.book') }}">
                                     {{_lang('Package Book')}} <i class=" ti-hand-open"></i></a>
                                 </li>
 
-                                <li><a href="{{ route('admin.air_ticket') }}">
+                                <li><a href="">
                                     {{_lang('Air Ticket')}} <i class=" ti-hand-open"></i></a>
                                 </li>
                             </ul>

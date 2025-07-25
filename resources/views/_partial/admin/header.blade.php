@@ -72,17 +72,16 @@
 						<div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
 							<div class=""><img src="{{auth()->user()->image ?asset('/storage/user/photo/' . auth()->user()->image):asset('assets/images/users/1.jpg')}}" alt="user" class="img-circle" width="60"></div>
 							<div class="m-l-10">
-								<h4 class="m-b-0">{{auth()->user()->first_name?auth()->user()->first_name.' '. auth()->user()->last_name:'Steave Jobs'}}</h4>
-								<p class=" m-b-0"><a href="https://www.wrappixel.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ef8effcfbe0cee9e3efe7e2a0ede1e3">[{{auth()->user()->name?auth()->user()->name:'Admin'}}]</a></p>
+								<p class=" m-b-0"><a href="https://www.wrappixel.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ef8effcfbe0cee9e3efe7e2a0ede1e3">[{{auth()->user()->name ? auth()->user()->name : 'Admin'}}]</a></p>
 							</div>
 						</div>
 						<a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
 
 						<div class="dropdown-divider"></div>
 						@if($isAdmin)
-						<a class="dropdown-item" href="" id="logout" data-url='{{ route('admin.logout') }}'><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+						<a class="dropdown-item" href="" id="logout" data-url='{{ route('admin.logout') }}'><i class="fa fa-power-off m-r-5 m-l-5"></i>Logout</a>
 						@else
-						<a href="{{ route('user.logout') }}"
+						<a class="dropdown-item" href="{{ route('user.logout') }}"
 						onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
 						class="text-red-600 hover:underline">
 						Logout

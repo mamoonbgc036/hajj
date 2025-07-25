@@ -35,10 +35,23 @@
                                     <li class="{{ Request::is('contact') ? ' active' : '' }}"><a href="{{ route('contact') }}">Contact Us </a> 
                                      </li>
                                     <li class="{{ Request::is('user.login') ? 'active' : '' }}">
-                                        <a href="{{ route('user.login') }}" style="color:  #007bff;">
-                                            Login
-                                        </a>
-                                    </li>
+    @if(auth()->check())
+        <a href="{{ route('user.logout') }}"
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+           style="color: red;">
+            Logout
+        </a>
+
+        <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    @else
+        <a href="{{ route('user.login') }}" style="color: #007bff;">
+            Login
+        </a>
+    @endif
+</li>
+
                                 </ul>
                             </nav>
                         </div>

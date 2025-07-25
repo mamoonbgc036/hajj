@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\User\UserSessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +18,18 @@ Route::get('user/login',[UserSessionController::class, 'login'])->name('user.log
 Route::post('user/login', [UserSessionController::class, 'check']);
 Route::get('user/register', [UserSessionController::class, 'register'])->name('user.register');
 Route::post('user/register', [UserSessionController::class, 'store']);
-Route::post('user/logout', [UserSessionController::class, 'logout'])->name('user.logout');
-Route::get('user/dashboard', [UserSessionController::class, 'dashboard'])->name('user-dashboard');
+
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('user/dashboard', [UserSessionController::class, 'dashboard'])->name('user-dashboard');
+    Route::post('user/logout', [UserSessionController::class, 'logout'])->name('user.logout');
+    Route::get('user/book', [UserSessionController::class, 'book'])->name('user.book');
+      Route::group(['as' => 'book.', 'prefix' => 'book'], function () {
+         Route::get('/client/{id}', [BookingController::class, 'client'])->name('client');
+         Route::get('/packege/{id}', [BookingController::class, 'packege'])->name('packege');
+         Route::delete('/delete/{id}', [BookingController::class, 'destroy'])->name('delete');
+        }); 
+});
   Route::group(['middleware' => ['install']], function () {
   Route::get('admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
   Route::post('admin/login', 'Admin\Auth\LoginController@login');
@@ -174,13 +185,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     });
     //Booking::::::::::::::::::::::::::
      Route::group(['as' => 'book.', 'prefix' => 'book'], function () {
-
          Route::get('/', 'BookingController@index')->name('index');
          Route::get('/client/{id}', 'BookingController@client')->name('client');
          Route::get('/packege/{id}', 'BookingController@packege')->name('packege');
          Route::delete('/delete/{id}', 'BookingController@destroy')->name('delete');
-
-
         }); 
      //System::::::::::::::::::::::::::
      Route::get('/faq','SystemController@index')->name('faq');
